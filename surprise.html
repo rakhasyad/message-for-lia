@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Surprise</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f9;
+      overflow: hidden;
+      transition: background-color 0.5s ease;
+    }
+
+    .center-button {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      text-align: center;
+    }
+
+    .button-container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 1s ease;
+    }
+
+    .button-container h1 {
+      font-size: 24px;
+      color: #ff6584;
+      margin-bottom: 15px;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      background-color: #ff6584;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .message-box {
+      display: none;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      max-width: 600px;
+      margin: auto;
+      text-align: center;
+      animation: fadeIn 1s ease;
+    }
+
+    .message-box h1 {
+      font-size: 24px;
+      color: #ff6584;
+      margin-bottom: 15px;
+    }
+
+    .message-box p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .confetti {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 10px;
+      height: 10px;
+      background-color: #ff6584;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: confettiFall 2s ease-out forwards;
+    }
+
+    @keyframes confettiFall {
+      0% {
+        transform: translate(-50%, -200px) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(calc(-50% + var(--random-x)), 100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="center-button">
+    <div class="button-container">
+      <h1>RING RING!! BIRTHDAY MESSAGE</h1>
+      <button id="startButton">Get Message</button>
+    </div>
+  </div>
+
+  <div class="message-box" id="messageBox">
+    <h1>Happy Birthday!</h1>
+    <p>
+      Selamat Ulang tahun kekasihku. Sungguh waktu yang sangat spesial untuk merayakannya karena tepat 12 Jam setelahnya, ibunda ku bertolak dari Tanah Air ke Tanah Suci<br><br>
+
+      Ingatkah kamu ketika aku mengungkapkan isi hatiku "akutu bangga, sekaligus terkesima sama persona kamu. benar-benar wujud malaikat dalam manusia. dan melihat semua perjuangan batin kamu, aku mau kita berjuang bersama." 21 Desember 2024. Betapa gugupnya aku kala itu. Aku bangga terhadap diriku karena telah "menarik" seorang bidadari yang berparas indah. Sejak hari itu aku memandangmu sebagai motivasi dan alasan bagi diri untuk terus berlari.<br><br>
+
+      Di hari usiamu genap 17 Tahun ini, tiada terucap dari lisan, tiada berharap dari hati, kecuali konsistensi dalam kebaikan dan tren positif dalam perkembangan diri -luar dan dalam. Santunlah bagiku untuk berterimakasih padamu kasih yang sudah berbagi kasih pada diri yang merindu kasih. Selepas itu, terdapat hasrat di dada untuk mengutarakan "Aku bangga, aku bahagia, aku senang, dan aku selalu ceria mendengar kabarmu dan membalasnya. Pun sebaliknya.". Lagi, hati ini selalu menanti rezeki bagimu kasih -rezeki materi, rezeki batin.<br><br>
+
+      Lidyatus Shaliha, betapa aku beruntung, bisa dicintai dan mencintai manusia sesempurna anda. Tetap semangat, Sungguh, kamu kini tidak lagi sendiri <br><br>
+
+      <i>-Rakha Rasyad Putra</i>
+    </p>
+  </div>
+
+  <script>
+    const startButton = document.getElementById('startButton');
+    const messageBox = document.getElementById('messageBox');
+    const body = document.body;
+
+    startButton.addEventListener('click', () => {
+      // Ubah latar belakang halaman
+      document.body.style.backgroundColor = '#ffe6e9';
+
+      // Sembunyikan tombol dan tampilkan pesan
+      document.querySelector('.center-button').style.display = 'none';
+      messageBox.style.display = 'block';
+
+      // Efek tembakan kertas krep
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.setProperty('--random-x', `${Math.random() * 200 - 100}px`);
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 80%, 60%)`;
+        body.appendChild(confetti);
+
+        setTimeout(() => {
+          confetti.remove();
+        }, 2000);
+      }
+    });
+  </script>
+</body>
+</html>
